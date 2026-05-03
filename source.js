@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تم الحظر</title>
+<title>Blocked</title>
 
 <style>
-/* اخفاء أي محتوى */
+/* Hide everything except the overlay */
 body > *:not(.block-overlay) {
     display: none !important;
 }
 
-/* طبقة الحظر */
+/* Fullscreen overlay */
 .block-overlay {
     position: fixed;
     top: 0;
@@ -25,7 +25,7 @@ body > *:not(.block-overlay) {
     z-index: 999999;
 }
 
-/* الرسالة */
+/* Message box */
 .blocked-message {
     background-color: #ff0000;
     color: white;
@@ -53,8 +53,8 @@ body > *:not(.block-overlay) {
 
 <div class="block-overlay">
     <div class="blocked-message">
-        ⚠️ تم حظرك<br>
-        يرجى التواصل مع إدارة Alix_io
+        ⚠️ You have been blocked.<br>
+        You must contact the administrator of Alix_io
     </div>
 </div>
 
