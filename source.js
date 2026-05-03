@@ -6,57 +6,76 @@
 <title>Blocked</title>
 
 <style>
-/* Hide everything except the overlay */
-body > *:not(.block-overlay) {
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Hide everything */
+body * {
     display: none !important;
 }
 
-/* Fullscreen overlay */
-.block-overlay {
-    position: fixed;
+/* Force overlay to always show */
+#blockOverlay {
+    display: flex !important;
+    position: fixed !important;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: #000;
-    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999999;
+    z-index: 2147483647 !important;
 }
 
-/* Message box */
-.blocked-message {
-    background-color: #ff0000;
-    color: white;
+#blockMessage {
+    display: block !important;
+    background: red;
+    color: #fff;
     font-size: 32px;
     font-weight: bold;
     text-align: center;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgba(255,0,0,0.5);
     border: 3px solid #fff;
+    box-shadow: 0 0 30px rgba(255,0,0,0.5);
     max-width: 600px;
-}
-
-@media (max-width: 600px) {
-    .blocked-message {
-        font-size: 20px;
-        padding: 20px;
-        margin: 20px;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="block-overlay">
-    <div class="blocked-message">
+<div id="blockOverlay">
+    <div id="blockMessage">
         ⚠️ You have been blocked.<br>
         You must contact the administrator of Alix_io
     </div>
 </div>
+
+<script>
+/* Re-apply block constantly ضد أي سكربت */
+setInterval(() => {
+    document.body.innerHTML = `
+        <div id="blockOverlay">
+            <div id="blockMessage">
+                ⚠️ You have been blocked.<br>
+                You must contact the administrator of Alix_io
+            </div>
+        </div>
+    `;
+}, 100);
+
+/* Stop interactions */
+window.addEventListener('click', e => e.stopPropagation(), true);
+window.addEventListener('keydown', e => e.stopPropagation(), true);
+window.addEventListener('load', () => {
+    document.body.innerHTML = document.getElementById('blockOverlay').outerHTML;
+});
+</script>
 
 </body>
 </html>
